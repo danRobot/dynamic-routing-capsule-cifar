@@ -168,13 +168,24 @@ def train(epochs,batch_size,mode,is_relu,has=True,version='',lear=0.01):
     from keras.utils.vis_utils import plot_model
     if mode==1:
         num_classes = 10
-        (x_train,y_train),(x_test,y_test) = load_cifar_10()
-        model = CapsNetv1(input_shape=[32,32, 3],
-                            n_class=num_classes,
-                            n_route=3)
-        print('x_train shape:', x_train.shape)
-        print(x_train.shape[0], 'train samples')
-        print(x_test.shape[0], 'test samples')
+        try:
+            x_train=np.load('trainimg.npy')
+            y_train=np.load('trainlab.npy')
+            with tf.Session() as sess:
+                y_train=sess.run(tf.one_hot(y_train,num_classes))
+        except:
+            print('kth no cargado')
+        try:
+            x_test=np.load('testimg.npy')
+            y_test=np.load('testlab.npy')
+            with tf.Session() as sess:
+                y_test=sess.run(tf.one_hot(y_test,num_classes))
+            print('x_train shape:', x_train.shape)
+            print(x_train.shape[0], 'train samples')
+            print(x_test.shape[0], 'test samples')
+        except:
+            print('kth no cargado')
+        
     else:
         num_classes = 11
         try:
@@ -239,13 +250,23 @@ def test(epoch,batch_size, mode=1,version='',best_model_name='.'):
         maske='KTH'
     if mode==1:
         num_classes = 10
-        (x_train,y_train),(x_test,y_test) = load_cifar_10()
-        model = CapsNetv1(input_shape=[32,32, 3],
-                            n_class=num_classes,
-                            n_route=3)
-        print('x_train shape:', x_train.shape)
-        print(x_train.shape[0], 'train samples')
-        print(x_test.shape[0], 'test samples')
+        try:
+            x_train=np.load('trainimg.npy')
+            y_train=np.load('trainlab.npy')
+            with tf.Session() as sess:
+                y_train=sess.run(tf.one_hot(y_train,num_classes))
+        except:
+            print('kth no cargado')
+        try:
+            x_test=np.load('testimg.npy')
+            y_test=np.load('testlab.npy')
+            with tf.Session() as sess:
+                y_test=sess.run(tf.one_hot(y_test,num_classes))
+            print('x_train shape:', x_train.shape)
+            print(x_train.shape[0], 'train samples')
+            print(x_test.shape[0], 'test samples')
+        except:
+            print('kth no cargado')
     else:
         num_classes = 11
         try:
