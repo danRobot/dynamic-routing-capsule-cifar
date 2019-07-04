@@ -186,6 +186,12 @@ def train(epochs,batch_size,mode,is_relu,has=True,version='',lear=0.01):
         except:
             print('kth no cargado')
         
+        model = CapsNetv1(input_shape=[200,200, 3],
+                            n_class=num_classes,
+                            n_route=3,kth=True,
+                            is_relu=is_relu,
+                            has=has)
+        
     else:
         num_classes = 11
         try:
