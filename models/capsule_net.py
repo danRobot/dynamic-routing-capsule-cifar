@@ -292,10 +292,10 @@ def test(epoch,batch_size, mode=1,version='',best_model_name='.'):
             print(x_test.shape[0], 'test samples')
         except:
             print('kth no cargado')
-        model = CapsNetv1(input_shape=[200,200, 3],
+        pass
+    model = CapsNetv1(input_shape=[200,200, 3],
                             n_class=num_classes,
                             n_route=3,kth=True)
-        pass
     accuracy=[]
     print(maske)
     print(mode)
